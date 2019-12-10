@@ -1,0 +1,28 @@
+img {
+    width: 100%;
+}
+body {
+    padding: 0;
+    margin: 0;
+}
+#gameArea {
+    padding: 10px;
+}
+
+.imgLogo {
+    width: 50px;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+  /*  align-items: center;
+    align-content: space-between;
+    justify-content: space-evenly;*/
+}
+
+#christmasGame {
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+}
