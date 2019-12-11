@@ -36,9 +36,9 @@ var gameArea = {
     },
   bgLoop:
     function () {
-      if ((loopXPosition + 4 * gameX) === (gameX)) {
+      if ((loopXPosition + 4 * gameX) <= (gameX)) {
         loopXPosition = 0;
-        speedOfGame *= 1;
+        speedOfGame *= 1.5;
         console.log("TESSSTEE DE LOOOOP ~ UTILIZAR PARA AUMENTAR A VELOCIDADE")
       }
 
@@ -58,7 +58,7 @@ var gameArea = {
       bgActiveFour.src = "./img/bg-loop/bg01.png";
       ctx.drawImage(bgActiveFour, loopXPosition + 3 * gameX, gameY * 0.6, gameX, gameY * 0.4);
 
-      loopXPosition -= 1;
+      loopXPosition -= 1 * speedOfGame;
     },
 
   stop: function () {
@@ -72,25 +72,41 @@ var gameArea = {
     ctx.fillText("Score: " + score, 50, 50);
   },
   giftBag: function () {
-    if (giftsInBag > 0) {
-      
-        let giftStatus1 = new Image();
-        giftStatus1.src = `./img/gifts/gifts-1.png`;
-        ctx.drawImage(giftStatus1, gameX * 0.70, 10, 45, 45)
+    if (giftsInBag === 1) {
 
-        let giftStatus2 = new Image();
-        giftStatus2.src = `./img/gifts/gifts-2.png`;
-        ctx.drawImage(giftStatus2, gameX * 0.80, 10, 45, 45);
+      let giftStatus3 = new Image();
+      giftStatus3.src = `./img/gifts/gifts-3.png`;
+      ctx.drawImage(giftStatus3, gameX * 0.90, 10, 45, 45);
 
-        let giftStatus3 = new Image();
-        giftStatus3.src = `./img/gifts/gifts-3.png`;
-        ctx.drawImage(giftStatus3, gameX * 0.90, 10, 45, 45);
+    } else if (giftsInBag === 2) {
 
-  //   ctx.font = "20px serif";
-  //   ctx.fillStyle = "white";
-  //   ctx.fillText("Score: " + giftsInBag, gameX * 0.85, 50);
-  // 
-}
+      let giftStatus2 = new Image();
+      giftStatus2.src = `./img/gifts/gifts-2.png`;
+      ctx.drawImage(giftStatus2, gameX * 0.80, 10, 45, 45);
+
+      let giftStatus3 = new Image();
+      giftStatus3.src = `./img/gifts/gifts-3.png`;
+      ctx.drawImage(giftStatus3, gameX * 0.90, 10, 45, 45);
+
+    } else if (giftsInBag >= 3) {
+
+      let giftStatus1 = new Image();
+      giftStatus1.src = `./img/gifts/gifts-1.png`;
+      ctx.drawImage(giftStatus1, gameX * 0.70, 10, 45, 45)
+
+      let giftStatus2 = new Image();
+      giftStatus2.src = `./img/gifts/gifts-2.png`;
+      ctx.drawImage(giftStatus2, gameX * 0.80, 10, 45, 45);
+
+      let giftStatus3 = new Image();
+      giftStatus3.src = `./img/gifts/gifts-3.png`;
+      ctx.drawImage(giftStatus3, gameX * 0.90, 10, 45, 45);
+    }
+
+    //   ctx.font = "20px serif";
+    //   ctx.fillStyle = "white";
+    //   ctx.fillText("Score: " + giftsInBag, gameX * 0.85, 50);
+    // 
   }
 };
 

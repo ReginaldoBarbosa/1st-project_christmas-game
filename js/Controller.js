@@ -27,13 +27,14 @@ function updateGameArea() {
   player.update();
   player.newPos();
   player.update();
-  updateGiftsDroped();
   creatRandomGift();
   creatRandomHouse();
+  updateGiftsDroped();
   checkScorePoint();
   gameArea.score();
   gameArea.giftBag();
   updateGiftsToGotcha()
+  // drawChamney();
   frames += 1;
   framesAnimation = requestAnimationFrame(updateGameArea);
   checkDamage();
@@ -82,7 +83,7 @@ function updateGiftsToGotcha() {
   if (crashed) {
     giftsToGotcha.shift();
     if (giftsInBag <= 2) {
-      giftsInBag += 1;
+      return giftsInBag += 1;
     } 
     // else {
     //   giftsInBag += 1;
@@ -96,7 +97,8 @@ function creatRandomGift() {
     console.log(giftsToGotcha);
   }
   for (i = 0; i < giftsToGotcha.length; i++) {
-    giftsToGotcha[i].x -= randomNumber(1, 10);
+    giftsToGotcha[i].x -= 1 + randomNumber(1, 10);
+    // setInterval(if (giftsToGotcha[i].y > 0) {return (giftsToGotcha[i].y += 1)}, 600);
     giftsToGotcha[i].update();
   }
 };
@@ -104,7 +106,7 @@ function creatRandomGift() {
 // ~~~~~~~~~~~~~~~~ House Creator ~~~~~~~~~~~~~~~~~ //
 function creatRandomHouse() {
   if (frames % 500 === 0) {
-    housesLoop.push(new HouseWithChimney(gameX * 0.2, gameY * 0.7, `./img/gifts/giftDrop-${randomNumber(1, 4)}.png`, gameX, gameY * 0.5));
+    housesLoop.push(new HouseWithChimney(gameX * 0.2, gameY * 0.4, `./img/houses/house${randomNumber(1, 4)}.png`, gameX, gameY * 0.6));
     console.log(housesLoop);
   }
   for (i = 0; i < housesLoop.length; i++) {
@@ -130,19 +132,20 @@ function checkDamage() {
 // ~~~~~~~~~~~~~~~~ Droped Gift ~~~~~~~~~~~~~~~~~ //
 function updateGiftsDroped() {
   for (i = 0; i < giftsDroped.length; i++) {
-    giftsDroped[i].y += 1;
+    giftsDroped[i].y *= 1.02;
     giftsDroped[i].update();
   }
 };
 // ~~~~~~~~~~~~~~~~ SCORE ~~~~~~~~~~~~~~~~~ //
 function checkScorePoint() {
-  let crashed = housesLoop.some(function (obstacle) {
-    return giftsDroped.some(e => e.crashWith(obstacle));
+  let crashed = giftsDroped.some(function (obstacle) {
+    return housesLoop.some(e => e.crashWithChimney(obstacle));
   });
 
   if (crashed) {
     giftsDroped.shift();
     score += 1;
+    setInterval(drawChamney(),5000)
     if (score % 10 === 0){
       if(lifeLeft < 3) {
         lifeLeft +=1;
@@ -150,4 +153,9 @@ function checkScorePoint() {
     }
   }
 };
-console.log('aaaaaaaaaaaaa');
+function drawChamney() {
+  housesLoop.forEach(e => {
+    ctx.fillStyle = "rgba(234,237,50,0.5)"
+    ctx.fillRect(e.x + e.width*0.45,e.y,50,50);
+  })
+}

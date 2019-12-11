@@ -8,8 +8,8 @@ class Component {
     this.color = color;
     this.x = x;
     this.y = y;
-    this.speedX = 1;
-    this.speedY = 0;
+    this.speedX = 1.5;
+    this.speedY = 1.5;
   }
   update() {
     if (lifeLeft <= 1) {
@@ -40,6 +40,7 @@ class Component {
         let playerImgLoopOne = new Image();
         playerImgLoopOne.src = `./img/player/${lifeLeft}LifeLeft/5.png`;
         ctx.drawImage(playerImgLoopOne, this.x, this.y, this.width, this.height);
+
       } else if (loopPlayerImg > 75) {
         loopPlayerImg = 0;
       }
@@ -47,7 +48,7 @@ class Component {
     }
 
     if (lifeLeft === 2) {
-      
+
       this.width = (gameX * 0.4) * 0.775;
       this.height = (gameY * 0.24) * 0.944;
 
@@ -132,7 +133,7 @@ class Component {
   dropGift() {
     if (giftsInBag > 0) {
       console.log('Youuu droped a gift');
-      giftsDroped.push(new Gift(this.width * 0.2, this.height * 0.7, `./img/gifts/giftDrop-${randomNumber(1,4)}.png`, this.x, this.y));
+      giftsDroped.push(new Gift(this.height * 0.4, this.height * 0.42, `./img/gifts/giftDrop-${randomNumber(1, 4)}.png`, this.x + this.height * 0.56, this.y + this.height * 0.4));
       console.log(giftsDroped);
       giftsInBag -= 1;
     }
@@ -158,7 +159,7 @@ class Component {
       this.left() > obstacle.right()
     );
   }
-  receiveDamage (){
+  receiveDamage() {
     this.x = 50;
     this.y = 50;
   }
@@ -173,14 +174,14 @@ class Gift {
     this.width = width;
     this.height = height;
     this.imgSRC = imgSRC;
-    this.speedX = 5;
-    this.speedY = 5;
+    this.speedX = 1;
+    this.speedY = 1;
   }
   update() {
-        let dropedGiftImg = new Image();
-        dropedGiftImg.src = `${this.imgSRC}`;
-        ctx.drawImage(dropedGiftImg, this.x, this.y, this.width, this.height);
-    }
+    let dropedGiftImg = new Image();
+    dropedGiftImg.src = `${this.imgSRC}`;
+    ctx.drawImage(dropedGiftImg, this.x, this.y, this.width, this.height);
+  }
   left() {
     return this.x;
   }
@@ -216,10 +217,10 @@ class HouseWithChimney {
     this.speedY = 2;
   }
   update() {
-        let dropedGiftImg = new Image();
-        dropedGiftImg.src = `${this.imgSRC}`;
-        ctx.drawImage(dropedGiftImg, this.x, this.y, this.width, this.height);
-    }
+    let dropedGiftImg = new Image();
+    dropedGiftImg.src = `${this.imgSRC}`;
+    ctx.drawImage(dropedGiftImg, this.x, this.y, this.width, this.height);
+  }
   left() {
     return this.x;
   }
@@ -231,6 +232,26 @@ class HouseWithChimney {
   }
   bottom() {
     return this.y + this.height;
+  }
+  chimneyLeft() {
+    return this.x + this.width * 0.5;
+  }
+  chimneyRight() {
+    return this.x + this.width * 0.65;
+  }
+  chimneyTop() {
+    return this.y + this.height * 0.2;
+  }
+  chimneyBottom() {
+    return this.y + this.height * 0.22;
+  }
+  crashWithChimney(obstacle) {
+    return !(
+      this.chimneyBottom() < obstacle.top() ||
+      this.chimneyTop() > obstacle.bottom() ||
+      this.chimneyRight() < obstacle.left() ||
+      this.chimneyLeft() > obstacle.right()
+    );
   }
   crashWith(obstacle) {
     return !(
