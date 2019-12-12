@@ -10,7 +10,7 @@ let score = 0;
 let loopXPosition = 0;
 let loopPlayerImg = 0;
 let speedOfGame = 1;
-var startGame = 5;
+let startGame = 5;
 
 
 
@@ -18,8 +18,52 @@ var startGame = 5;
 const player = new Component(gameX * 0.4, gameY * 0.24, "blue", 50, 50);
 
 
+// ~~~~~~~~ START/RESET and STOP Button ~~~~~~~~~ //
+let startButton = document.getElementById('startResetButton');
+startButton.onclick = (event) => {
+  if (frames === 0) {
+    let framesAnimation = requestAnimationFrame(updateGameArea);
+    bgSound();
+    event.target.disabled = true;
+    event.target.disabled = false;
+    // startButton.style.display = "none";
+    // startButton.style.display = "block";
+  } else {
+    canvas.focus();
+    giftsInBag = 3;
+    giftsDroped = [];
+    giftsToGotcha = [];
+    housesLoop = [];
+    lifeLeft = 3;
+    score = 0;
+    loopXPosition = 0;
+    loopPlayerImg = 0;
+    speedOfGame = 1;
+    startGame = 5;
+    frames = 0;
+    event.target.disabled = true;
+    event.target.disabled = false;
+  }
+}
 
-let framesAnimation = requestAnimationFrame(updateGameArea);
+let pauseButton = document.getElementById('pauseButton');
+let pauseStatus = true;
+pauseButton.onclick = (event) => {
+  if (pauseStatus) {
+    framesAnimation = cancelAnimationFrame(framesAnimation);
+    pauseStatus = !pauseStatus;
+    event.target.disabled = true;
+    event.target.disabled = false;
+  } else {
+    framesAnimation = requestAnimationFrame(updateGameArea);
+    pauseStatus = !pauseStatus;
+    event.target.disabled = true;
+    event.target.disabled = false;
+  }
+};
+
+
+
 // ~~~~~~~~~~~~~~~~ UPDATE ~~~~~~~~~~~~~~~~~ //
 function updateGameArea() {
   gameArea.clear();
@@ -39,13 +83,6 @@ function updateGameArea() {
   framesAnimation = requestAnimationFrame(updateGameArea);
   checkDamage();
 }
-
-
-
-
-
-
-
 
 // ~~~~~~~~~~~~~~~~ PLAYER MOVES ~~~~~~~~~~~~~~~~~ //
 
@@ -70,8 +107,8 @@ document.onkeydown = function (e) {
 };
 
 document.onkeyup = function (e) {
-  player.speedX = 0;
-  player.speedY = 0;
+  player.speedX *= 0.5;
+  player.speedY *= 0.5;
 };
 
 // ~~~~~~~~~~~~~~~~ Gift to Gotcha ~~~~~~~~~~~~~~~~~ //
@@ -81,19 +118,22 @@ function updateGiftsToGotcha() {
   });
 
   if (crashed) {
-    giftsToGotcha.shift();
+    gotGiftSound();
+    giftsToGotcha.forEach((e,idx)=>{
+      if (player.crashWith(e)){
+        giftsToGotcha.splice(idx,1);
+      }
+    });
     if (giftsInBag <= 2) {
       return giftsInBag += 1;
-    } 
-    // else {
-    //   giftsInBag += 1;
-    // }
+    }
   }
 };
+
 // ~~~~~~~~~~~~~~~~ Gifts Creator ~~~~~~~~~~~~~~~~~ //
 function creatRandomGift() {
   if (frames % 500 === 0) {
-    giftsToGotcha.push(new Gift(50, 50, `./img/gifts/giftDrop-${randomNumber(1, 4)}.png`, gameX, randomNumber(0, gameY*0.8)));
+    giftsToGotcha.push(new Gift(50, 50, `./img/gifts/giftDrop-${randomNumber(1, 4)}.png`, gameX, randomNumber(0, gameY * 0.8)));
     console.log(giftsToGotcha);
   }
   for (i = 0; i < giftsToGotcha.length; i++) {
@@ -105,9 +145,9 @@ function creatRandomGift() {
 
 // ~~~~~~~~~~~~~~~~ House Creator ~~~~~~~~~~~~~~~~~ //
 function creatRandomHouse() {
-  if (frames % 500 === 0) {
+  if (frames % 780 === 0) {
     housesLoop.push(new HouseWithChimney(gameX * 0.2, gameY * 0.4, `./img/houses/house${randomNumber(1, 4)}.png`, gameX, gameY * 0.6));
-    console.log(housesLoop);
+    speedOfGame *= 1.05;
   }
   for (i = 0; i < housesLoop.length; i++) {
     housesLoop[i].x -= 1 * speedOfGame;
@@ -121,6 +161,7 @@ function checkDamage() {
   });
 
   if (crashed) {
+    ouchSound();
     if (lifeLeft > 1) {
       player.receiveDamage();
       lifeLeft -= 1;
@@ -141,14 +182,19 @@ function checkScorePoint() {
   let crashed = giftsDroped.some(function (obstacle) {
     return housesLoop.some(e => e.crashWithChimney(obstacle));
   });
+  let missedChamney = giftsDroped.some(e => (e.y >= gameY * 1.1 && e.y <= gameY * 1.2));
+  if (missedChamney) {
+    missChamney();
+  }
 
   if (crashed) {
     giftsDroped.shift();
     score += 1;
-    setInterval(drawChamney(),5000)
-    if (score % 10 === 0){
-      if(lifeLeft < 3) {
-        lifeLeft +=1;
+    setInterval(drawChamney(), 5000)
+    if (score % 10 === 0) {
+      if (lifeLeft < 3) {
+        lifeLeft += 1;
+        speedOfGame *= 1.05;
       }
     }
   }
@@ -156,6 +202,6 @@ function checkScorePoint() {
 function drawChamney() {
   housesLoop.forEach(e => {
     ctx.fillStyle = "rgba(234,237,50,0.5)"
-    ctx.fillRect(e.x + e.width*0.45,e.y,50,50);
+    ctx.fillRect(e.x + e.width * 0.45, e.y, 50, 50);
   })
 }

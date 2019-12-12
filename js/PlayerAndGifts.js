@@ -1,5 +1,3 @@
-console.log('02player.js - Working');
-
 // ~~~~~~~~~~~~~~~~ PLAYER ~~~~~~~~~~~~~~~~~ //
 class Component {
   constructor(width, height, color, x, y) {
@@ -132,12 +130,14 @@ class Component {
   }
   dropGift() {
     if (giftsInBag > 0) {
-      console.log('Youuu droped a gift');
+      console.log('Droped a gift');
       giftsDroped.push(new Gift(this.height * 0.4, this.height * 0.42, `./img/gifts/giftDrop-${randomNumber(1, 4)}.png`, this.x + this.height * 0.56, this.y + this.height * 0.4));
       console.log(giftsDroped);
       giftsInBag -= 1;
+    } else {
+      giftsInBag = 0;
+      console.log("Gifts in bag is over");
     }
-    console.log("Gifts in bag is over");
   }
   left() {
     return this.x;
@@ -162,6 +162,7 @@ class Component {
   receiveDamage() {
     this.x = 50;
     this.y = 50;
+    // ouchSound();
   }
 };
 

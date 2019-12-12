@@ -1,33 +1,28 @@
-let testeee = "olaaaaaaaa";
 // ~~~~~~~~~~~~~~~~ CANVAS PARAMETERS ~~~~~~~~~~~~~~~~~ //
+window.onload = function() {
+  document.getElementById("christmasGame").focus();
+};
 const canvas = document.getElementById('christmasGame');
 canvas.width = window.innerWidth;
-canvas.height = window.innerWidth * 0.5;
+canvas.height = canvas.width * 0.5;
 const gameX = canvas.width;
 const gameY = canvas.height;
 const ctx = canvas.getContext('2d');
+const startResetButton = document.getElementById('startResetButton');
 
-// ~~~~~~~~~~~~~~~~ SOUND ~~~~~~~~~~~~~~~~~ //
-// During the game
-function bgSound() {
-  const bg = new Audio();
-  bg.src = "./sound/DeckTheHalls.mp3"
-  bg.play();
-};
-// bgSound();
 
 // ~~~~~~~~~~~~~~~~ START GAME AREA ~~~~~~~~~~~~~~~~~ //
-var frames = 0;
-var gameArea = {
-  canvas: document.getElementById('christmasGame'),
-  frames: 0,
-  start: function () {
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerWidth * 0.5;
-    this.ctx = this.canvas.getContext("2d");
-    this.gameX = gameX;
-    this.gameY = gameY;
-  },
+let frames = 0;
+let gameArea = {
+  // canvas: document.getElementById('christmasGame'),
+  // frames: 0,
+  // start: function () {
+  //   this.canvas.width = window.innerWidth;
+  //   this.canvas.height = window.innerWidth * 0.5;
+  //   this.ctx = this.canvas.getContext("2d");
+  //   this.gameX = gameX;
+  //   this.gameY = gameY;
+  // },
   clear:
     function () {
       let bgFixed = new Image();
@@ -38,8 +33,8 @@ var gameArea = {
     function () {
       if ((loopXPosition + 4 * gameX) <= (gameX)) {
         loopXPosition = 0;
-        speedOfGame *= 1.5;
-        console.log("TESSSTEE DE LOOOOP ~ UTILIZAR PARA AUMENTAR A VELOCIDADE")
+        speedOfGame *= 1.1;
+        console.log("Speed UP");
       }
 
       let bgActiveOne = new Image();
@@ -63,11 +58,10 @@ var gameArea = {
 
   stop: function () {
     cancelAnimationFrame(framesAnimation);
-    console.log("Cancel", startGame);
-
+    gameOverSound();
   },
   score: function () {
-    ctx.font = "20px serif";
+    ctx.font = `${gameX*0.03}px serif`;
     ctx.fillStyle = "white";
     ctx.fillText("Score: " + score, 50, 50);
   },
@@ -117,6 +111,8 @@ console.log('01general.js - Working');
 
 
 // ~~~~~~~~~~~~~~~~ RANDOM FUNCTION ~~~~~~~~~~~~~~~~~ //
-function randomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
+  function randomNumber(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};
