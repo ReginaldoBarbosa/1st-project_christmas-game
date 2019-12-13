@@ -28,7 +28,7 @@ h3 {
     justify-content: space-evenly;
 }
 .navbar-brand{
-    font: Castellar, helvetica, Arial, Tahoma, Sans-serif;
+    font: Animatic SC, helvetica, Arial, Tahoma, Sans-serif;
     color: black;
     text-transform: uppercase;
 }
@@ -102,13 +102,30 @@ button{
     border: 0.1vw solid black;
     border-radius: 1vw;
 }
+#gameOver {
+    float: left;
+    position: absolute;
+    width: 66%;
+    height: 66%;
+    margin-left: 28vw;
+    padding-top: 15.5vw;
+    z-index: 1;
+    background-color: black;
+    text-align: center;
+    color: chocolate;
+    font-size: 5vw;
+    border: 0.1vw solid black;
+    opacity: 0.0;
+    border-radius: 1vw;
+
+}
 #buttonMoveUp{
     float: left;
     position: absolute;
     justify-content: center;
-    width: 5vw;
-    margin-top: 15vw;
-    margin-left: 83vw;
+    width: 6vw;
+    margin-top: 14.5vw;
+    margin-left: 82.5vw;
     background-color: black;
     color: white;
 }
@@ -116,9 +133,9 @@ button{
     float: left;
     position: absolute;
     justify-content: center;
-    width: 5vw;
-    margin-top: 18vw;
-    margin-left: 83vw;
+    width: 6vw;
+    margin-top: 18.5vw;
+    margin-left: 82.5vw;
     background-color: black;
     color: white;
 }
@@ -126,9 +143,9 @@ button{
     float: left;
     position: absolute;
     justify-content: center;
-    width: 5vw;
+    width: 6vw;
     margin-top: 16.5vw;
-    margin-left: 88vw;
+    margin-left: 88.5vw;
     background-color: black;
     color: white;
 }
@@ -136,9 +153,9 @@ button{
     float: left;
     position: absolute;
     justify-content: center;
-    width: 5vw;
+    width: 6vw;
     margin-top: 16.5vw;
-    margin-left: 77.5vw;
+    margin-left: 76.5vw;
     background-color: black;
     color: white;
 }

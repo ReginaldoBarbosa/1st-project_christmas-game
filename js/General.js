@@ -9,6 +9,7 @@ const gameX = canvas.width;
 const gameY = canvas.height;
 const ctx = canvas.getContext('2d');
 const startResetButton = document.getElementById('startResetButton');
+const gameOverImg = document.getElementById('gameOver');
 
 // ~~~~~~~~~~~~~~~~ START GAME AREA ~~~~~~~~~~~~~~~~~ //
 let frames = 0;
@@ -48,7 +49,14 @@ let gameArea = {
 
   stop: function () {
     cancelAnimationFrame(framesAnimation);
-    gameOverSound();
+    bgSound.pause();
+    bgSound.currentTime = 0;
+    gameOverSound.play();
+    setTimeout(function () {gameOverImg.style.display = "block";}, 500);
+    setTimeout(function () {gameOverImg.style.opacity = "0.25";}, 1000);
+    setTimeout(function () {gameOverImg.style.opacity = "0.5";}, 2000);
+    setTimeout(function () {gameOverImg.style.opacity = "0.75";}, 3000);
+    setTimeout(function () {gameOverImg.style.opacity = "0.9";}, 4000);
   },
   score: function () {
     ctx.font = `${gameX*0.03}px serif`;

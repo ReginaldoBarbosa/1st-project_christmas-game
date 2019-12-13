@@ -18,11 +18,21 @@ let startButton = document.getElementById('startResetButton');
 startButton.onclick = (event) => {
   if (frames === 0) {
     let framesAnimation = requestAnimationFrame(updateGameArea);
-    bgSound();
+    gameOverSound.pause()
+    gameOverSound.currentTime = 0;
+    bgSound.pause();
+    bgSound.currentTime = 0;
+    bgSound.play();
     event.target.disabled = true;
     event.target.disabled = false;
+    gameOverImg.style.display = "none";
   } else {
     canvas.focus();
+    gameOverSound.pause()
+    gameOverSound.currentTime = 0;
+    bgSound.pause();
+    bgSound.currentTime = 0;
+    bgSound.play();
     giftsInBag = 3;
     giftsDroped = [];
     giftsToGotcha = [];
@@ -36,6 +46,7 @@ startButton.onclick = (event) => {
     frames = 0;
     event.target.disabled = true;
     event.target.disabled = false;
+    gameOverImg.style.display = "none";
   }
 }
 
@@ -44,10 +55,12 @@ let pauseStatus = true;
 pauseButton.onclick = (event) => {
   if (pauseStatus) {
     framesAnimation = cancelAnimationFrame(framesAnimation);
+    bgSound.pause();
     pauseStatus = !pauseStatus;
     event.target.disabled = true;
     event.target.disabled = false;
   } else {
+    bgSound.play();
     framesAnimation = requestAnimationFrame(updateGameArea);
     pauseStatus = !pauseStatus;
     event.target.disabled = true;
