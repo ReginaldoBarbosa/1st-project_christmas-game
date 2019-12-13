@@ -27,21 +27,36 @@ h3 {
     align-items: center;
     justify-content: space-evenly;
 }
+.navbar-brand{
+    font: Castellar, helvetica, Arial, Tahoma, Sans-serif;
+    color: black;
+    text-transform: uppercase;
+}
 ul {
     padding: 0;
 }
 ul>li {
     list-style: none;
 }
+button{
+    display: flex;
+    font-size: 1vw;
+    padding: 0;
+    margin: 0;
+    width: 23vw;
+}
 .menuGameArea {
-    background-color: lightblue;
+    background-color: #222D6A;
+    background-image: url("/img/webImg/bgOutBlue.jpg");
+    background-size: 250%;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     padding: 1vw;
-    height: 100%;
-    width: 40%;
+    /* height: 50vw; */
+    width: 30vw;
     border-radius: 2vh;
     border: 0.1vw solid black;
 }
@@ -54,17 +69,18 @@ ul>li {
     color: white;
 }
 #gameArea {
-    /* background-color: darkblue; */
-    background-image: url("./img/webImg/bgOut.jpg");
-    background-color: #cccccc;
-    height: 80vh;
+    background-color: #3E6F0B;
+    background-image: url("/img/webImg/bgOut.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 46vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 2vw;
     border: 0.4vw solid black;
     border-radius: 2vw;
-    margin: 2vw;
+    margin: 0.7vw;
 }
 
 .imgLogo {
@@ -77,9 +93,62 @@ ul>li {
 
 
 #christmasGame {
-    width: 55%;
+    width: 70%;
     height: 100%;
-    background-color: blue;
+    background-color: #FFF;
+    background-image: url("/img/webImg/howToPlay.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
     border: 0.1vw solid black;
     border-radius: 1vw;
+}
+#buttonMoveUp{
+    float: left;
+    position: absolute;
+    justify-content: center;
+    width: 5vw;
+    margin-top: 15vw;
+    margin-left: 83vw;
+    background-color: black;
+    color: white;
+}
+#buttonMoveDown{
+    float: left;
+    position: absolute;
+    justify-content: center;
+    width: 5vw;
+    margin-top: 18vw;
+    margin-left: 83vw;
+    background-color: black;
+    color: white;
+}
+#buttonMoveRight{
+    float: left;
+    position: absolute;
+    justify-content: center;
+    width: 5vw;
+    margin-top: 16.5vw;
+    margin-left: 88vw;
+    background-color: black;
+    color: white;
+}
+#buttonMoveLeft{
+    float: left;
+    position: absolute;
+    justify-content: center;
+    width: 5vw;
+    margin-top: 16.5vw;
+    margin-left: 77.5vw;
+    background-color: black;
+    color: white;
+}
+#buttonDrop{
+    float: left;
+    position: absolute;
+    justify-content: center;
+    width: 10vw;
+    margin-top: 16.5vw;
+    margin-left: 30vw;
+    background-color: black;
+    color: white;
 }

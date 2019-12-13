@@ -85,6 +85,11 @@ function updateGameArea() {
 }
 
 // ~~~~~~~~~~~~~~~~ PLAYER MOVES ~~~~~~~~~~~~~~~~~ //
+let buttonMoveUp = document.getElementById('buttonMoveUp');
+let buttonMoveDown = document.getElementById('buttonMoveDown');
+let buttonMoveRight = document.getElementById('buttonMoveRight');
+let buttonMoveLeft = document.getElementById('buttonMoveLeft');
+let buttonDrop = document.getElementById('buttonDrop');
 
 document.onkeydown = function (e) {
   switch (e.keyCode) {
@@ -105,6 +110,11 @@ document.onkeydown = function (e) {
       break;
   }
 };
+buttonMoveUp.onclick = () => {player.speedY = -6;};
+buttonMoveDown.onclick = () => {player.speedY = +6;};
+buttonMoveLeft.onclick = () => {player.speedX = -6;};
+buttonMoveRight.onclick = () => {player.speedX = +6;};
+buttonDrop.onclick = () => {player.dropGift();};
 
 document.onkeyup = function (e) {
   player.speedX *= 0.5;
