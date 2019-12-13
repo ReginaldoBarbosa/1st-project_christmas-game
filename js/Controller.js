@@ -1,5 +1,3 @@
-console.log('03constroller.js - Working');
-
 // ~~~~~~~~~~~~~~~~ GLOBAL VARIABLES ~~~~~~~~~~~~~~~~~ //
 let giftsInBag = 3;
 let giftsDroped = [];
@@ -12,11 +10,8 @@ let loopPlayerImg = 0;
 let speedOfGame = 1;
 let startGame = 5;
 
-
-
-// ~~~~~~~~~~~~~~~~ PLAYER ~~~~~~~~~~~~~~~~~ //
+// ~~~~~~~~~~~~~~~~ NEW PLAYER ~~~~~~~~~~~~~~~~~ //
 const player = new Component(gameX * 0.4, gameY * 0.24, "blue", 50, 50);
-
 
 // ~~~~~~~~ START/RESET and STOP Button ~~~~~~~~~ //
 let startButton = document.getElementById('startResetButton');
@@ -26,8 +21,6 @@ startButton.onclick = (event) => {
     bgSound();
     event.target.disabled = true;
     event.target.disabled = false;
-    // startButton.style.display = "none";
-    // startButton.style.display = "block";
   } else {
     canvas.focus();
     giftsInBag = 3;
@@ -61,8 +54,6 @@ pauseButton.onclick = (event) => {
     event.target.disabled = false;
   }
 };
-
-
 
 // ~~~~~~~~~~~~~~~~ UPDATE ~~~~~~~~~~~~~~~~~ //
 function updateGameArea() {
@@ -110,11 +101,41 @@ document.onkeydown = function (e) {
       break;
   }
 };
-buttonMoveUp.onclick = () => {player.speedY = -6;};
-buttonMoveDown.onclick = () => {player.speedY = +6;};
-buttonMoveLeft.onclick = () => {player.speedX = -6;};
-buttonMoveRight.onclick = () => {player.speedX = +6;};
-buttonDrop.onclick = () => {player.dropGift();};
+buttonMoveUp.onclick = (event) => {
+  player.speedY -= 6;
+  event.target.disabled = true;
+  event.target.disabled = false;
+  setTimeout( player.speedX *= 0.5, 500);
+  setTimeout( player.speedY *= 0.5, 500);
+};
+buttonMoveDown.onclick = (event) => {
+  player.speedY += 6;
+  event.target.disabled = true;
+  event.target.disabled = false;
+  setTimeout( player.speedX *= 0.5, 500);
+  setTimeout( player.speedY *= 0.5, 500);
+};
+buttonMoveLeft.onclick = (event) => {
+  player.speedX -= 6;
+  event.target.disabled = true;
+  event.target.disabled = false;
+  setTimeout( player.speedX *= 0.5, 500);
+  setTimeout( player.speedY *= 0.5, 500);
+};
+buttonMoveRight.onclick = (event) => {
+  player.speedX += 6;
+  event.target.disabled = true;
+  event.target.disabled = false;
+  setTimeout( player.speedX *= 0.5, 500);
+  setTimeout( player.speedY *= 0.5, 500);
+};
+buttonDrop.onclick = (event) => {
+  player.dropGift();
+  event.target.disabled = true;
+  event.target.disabled = false;
+  setTimeout( player.speedX *= 0.5, 500);
+  setTimeout( player.speedY *= 0.5, 500);
+};
 
 document.onkeyup = function (e) {
   player.speedX *= 0.5;
@@ -129,9 +150,9 @@ function updateGiftsToGotcha() {
 
   if (crashed) {
     gotGiftSound();
-    giftsToGotcha.forEach((e,idx)=>{
-      if (player.crashWith(e)){
-        giftsToGotcha.splice(idx,1);
+    giftsToGotcha.forEach((e, idx) => {
+      if (player.crashWith(e)) {
+        giftsToGotcha.splice(idx, 1);
       }
     });
     if (giftsInBag <= 2) {

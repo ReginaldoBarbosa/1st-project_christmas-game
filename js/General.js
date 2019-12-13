@@ -10,19 +10,9 @@ const gameY = canvas.height;
 const ctx = canvas.getContext('2d');
 const startResetButton = document.getElementById('startResetButton');
 
-
 // ~~~~~~~~~~~~~~~~ START GAME AREA ~~~~~~~~~~~~~~~~~ //
 let frames = 0;
 let gameArea = {
-  // canvas: document.getElementById('christmasGame'),
-  // frames: 0,
-  // start: function () {
-  //   this.canvas.width = window.innerWidth;
-  //   this.canvas.height = window.innerWidth * 0.5;
-  //   this.ctx = this.canvas.getContext("2d");
-  //   this.gameX = gameX;
-  //   this.gameY = gameY;
-  // },
   clear:
     function () {
       let bgFixed = new Image();
@@ -70,45 +60,34 @@ let gameArea = {
 
       let giftStatus3 = new Image();
       giftStatus3.src = `./img/gifts/gifts-3.png`;
-      ctx.drawImage(giftStatus3, gameX * 0.90, 10, 45, 45);
+      ctx.drawImage(giftStatus3, gameX * 0.90, gameX*0.01, gameX*0.045, gameX*0.045);
 
     } else if (giftsInBag === 2) {
 
       let giftStatus2 = new Image();
       giftStatus2.src = `./img/gifts/gifts-2.png`;
-      ctx.drawImage(giftStatus2, gameX * 0.80, 10, 45, 45);
+      ctx.drawImage(giftStatus2, gameX * 0.80, gameX*0.01, gameX*0.045, gameX*0.045);
 
       let giftStatus3 = new Image();
       giftStatus3.src = `./img/gifts/gifts-3.png`;
-      ctx.drawImage(giftStatus3, gameX * 0.90, 10, 45, 45);
+      ctx.drawImage(giftStatus3, gameX * 0.90, gameX*0.01, gameX*0.045, gameX*0.045);
 
     } else if (giftsInBag >= 3) {
 
       let giftStatus1 = new Image();
       giftStatus1.src = `./img/gifts/gifts-1.png`;
-      ctx.drawImage(giftStatus1, gameX * 0.70, 10, 45, 45)
+      ctx.drawImage(giftStatus1, gameX * 0.70, gameX*0.01, gameX*0.045, gameX*0.045)
 
       let giftStatus2 = new Image();
       giftStatus2.src = `./img/gifts/gifts-2.png`;
-      ctx.drawImage(giftStatus2, gameX * 0.80, 10, 45, 45);
+      ctx.drawImage(giftStatus2, gameX * 0.80, gameX*0.01, gameX*0.045, gameX*0.045);
 
       let giftStatus3 = new Image();
       giftStatus3.src = `./img/gifts/gifts-3.png`;
-      ctx.drawImage(giftStatus3, gameX * 0.90, 10, 45, 45);
+      ctx.drawImage(giftStatus3, gameX * 0.90, gameX*0.01, gameX*0.045, gameX*0.045);
     }
-
-    //   ctx.font = "20px serif";
-    //   ctx.fillStyle = "white";
-    //   ctx.fillText("Score: " + giftsInBag, gameX * 0.85, 50);
-    // 
   }
 };
-
-
-
-console.log('01general.js - Working');
-
-
 
 // ~~~~~~~~~~~~~~~~ RANDOM FUNCTION ~~~~~~~~~~~~~~~~~ //
   function randomNumber(min, max) {

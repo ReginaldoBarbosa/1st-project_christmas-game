@@ -47,7 +47,7 @@ button{
 }
 .menuGameArea {
     background-color: #222D6A;
-    background-image: url("/img/webImg/bgOutBlue.jpg");
+    background-image: url("../img/webImg/bgOutBlue.jpg");
     background-size: 250%;
     background-repeat: no-repeat;
     display: flex;
@@ -70,7 +70,7 @@ button{
 }
 #gameArea {
     background-color: #3E6F0B;
-    background-image: url("/img/webImg/bgOut.jpg");
+    background-image: url("../img/webImg/bgOut.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     height: 46vw;
@@ -96,7 +96,7 @@ button{
     width: 70%;
     height: 100%;
     background-color: #FFF;
-    background-image: url("/img/webImg/howToPlay.png");
+    background-image: url("../img/webImg/howToPlay.png");
     background-size: 100%;
     background-repeat: no-repeat;
     border: 0.1vw solid black;
