@@ -52,11 +52,14 @@ let gameArea = {
     bgSound.pause();
     bgSound.currentTime = 0;
     gameOverSound.play();
+    let opacityGameOver = 0.01;
     setTimeout(function () {gameOverImg.style.display = "block";}, 500);
-    setTimeout(function () {gameOverImg.style.opacity = "0.25";}, 1000);
-    setTimeout(function () {gameOverImg.style.opacity = "0.5";}, 2000);
-    setTimeout(function () {gameOverImg.style.opacity = "0.75";}, 3000);
-    setTimeout(function () {gameOverImg.style.opacity = "0.9";}, 4000);
+    setInterval(function() {
+      if (opacityGameOver < 0.9){
+        opacityGameOver *= 1.1
+        gameOverImg.style.opacity = `${opacityGameOver}`;
+      }
+    }, 100);
   },
   score: function () {
     ctx.font = `${gameX*0.03}px serif`;

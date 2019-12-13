@@ -82,7 +82,6 @@ function updateGameArea() {
   gameArea.score();
   gameArea.giftBag();
   updateGiftsToGotcha()
-  // drawChamney();
   frames += 1;
   framesAnimation = requestAnimationFrame(updateGameArea);
   checkDamage();
@@ -177,12 +176,11 @@ function updateGiftsToGotcha() {
 // ~~~~~~~~~~~~~~~~ Gifts Creator ~~~~~~~~~~~~~~~~~ //
 function creatRandomGift() {
   if (frames % 500 === 0) {
-    giftsToGotcha.push(new Gift(50, 50, `./img/gifts/giftDrop-${randomNumber(1, 4)}.png`, gameX, randomNumber(0, gameY * 0.8)));
+    giftsToGotcha.push(new Gift(gameX*0.05,gameX*0.05, `./img/gifts/giftDrop-${randomNumber(1, 4)}.png`, gameX, randomNumber(0, gameY * 0.8)));
     console.log(giftsToGotcha);
   }
   for (i = 0; i < giftsToGotcha.length; i++) {
     giftsToGotcha[i].x -= 1 + randomNumber(1, 10);
-    // setInterval(if (giftsToGotcha[i].y > 0) {return (giftsToGotcha[i].y += 1)}, 600);
     giftsToGotcha[i].update();
   }
 };

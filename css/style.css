@@ -46,8 +46,8 @@ button{
     width: 23vw;
 }
 .menuGameArea {
-    background-color: #222D6A;
-    background-image: url("../img/webImg/bgOutBlue.jpg");
+    background-color: #C5C773;
+    /* background-image: url("../img/webImg/bgOutBlue.jpg"); */
     background-size: 250%;
     background-repeat: no-repeat;
     display: flex;
@@ -55,7 +55,7 @@ button{
     align-items: center;
     text-align: center;
     padding: 1vw;
-    /* height: 50vw; */
+    height: 13vw;
     width: 30vw;
     border-radius: 2vh;
     border: 0.1vw solid black;
@@ -105,8 +105,8 @@ button{
 #gameOver {
     float: left;
     position: absolute;
-    width: 66%;
-    height: 66%;
+    width: 66vw;
+    height: 42vw;
     margin-left: 28vw;
     padding-top: 15.5vw;
     z-index: 1;
@@ -115,7 +115,7 @@ button{
     color: chocolate;
     font-size: 5vw;
     border: 0.1vw solid black;
-    opacity: 0.0;
+    opacity: 0.001;
     border-radius: 1vw;
 
 }
