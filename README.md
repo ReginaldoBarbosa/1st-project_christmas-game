@@ -6,7 +6,7 @@ Christmas is coming, so i decided make my study project based in this thematic.:
 
 This game have a simple mechanism, you just have to use the keyboard arrows to move Santa Claus and you have to drop the gifts into chimney,caution to do not crash with houses.
 
-So... Have fun and Merry Christmas [Play](https://reginaldobarbosa.github.io/1st-project_christmas-game/)
+So... Have fun and Merry Christmas [Play](https://reginaldobr.github.io/1st-project_christmas-game/)
 
 ###### Home Page
 ![screenShot](https://user-images.githubusercontent.com/57200968/70806784-d4c3eb00-1d9a-11ea-84e1-9c6ce27859ed.png)
